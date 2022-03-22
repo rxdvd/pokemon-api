@@ -1,5 +1,5 @@
 ''' pokemons controller '''
-from werkzeug.exceptions import BadRequest
+from werkzeug.exceptions import NotFound
 
 import json
 
@@ -35,4 +35,4 @@ def find_by_uid(uid):
     try:
         return next(pokemon for pokemon in pokemons if pokemon['id'] == uid)
     except:
-        raise BadRequest(f"We don't have that pokemon with id {uid}!")
+        raise NotFound(f"We don't have that pokemon with id {uid}!")
