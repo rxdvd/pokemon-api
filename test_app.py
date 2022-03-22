@@ -53,9 +53,16 @@ class TestAPICases():
         assert res.status == '400 BAD REQUEST'
         assert 'needs a name' in res.json['message']
 
-    def test_delete_pokemon(self,api):
+    def test_delete_pokemon(self, api):
         res = api.delete('/pokemon/3')
         assert res.status == '204 NO CONTENT'
         resTwo = api.get('/pokemon')
         assert resTwo.status == '200 OK'
         assert len(resTwo.json) == 2
+
+    def test_update_pokemon(self, api):
+        mock_data = json.dumps({'name', 'Edwardmon'})
+        mock_headers = {'Content-Type': 'application/json'}
+        res = api.patch('/pokemon/1', data=mock_data, headers=mock_headers)
+        assert res.json['id'] == 1
+        assert res.json['name'] == 'Edwardmon'
