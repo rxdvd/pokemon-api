@@ -1,6 +1,5 @@
 ''' pokemons controller '''
 from werkzeug.exceptions import NotFound
-
 import json
 
 f = open('data/pokemon.json')
