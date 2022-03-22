@@ -65,3 +65,9 @@ class TestAPICases():
         res = api.patch('/pokemon/1', data=mock_data, headers=mock_headers)
         assert res.json['id'] == 1
         assert res.json['name'] == 'Edwardmon'
+
+    def test_not_allowed(self, api):
+        mock_data = json.dumps({'name': 'Edwardmon'})
+        mock_headers = {'Content-Type': 'application/json'}
+        res = api.put('/pokemon/1', data=mock_data, headers=mock_headers)
+        assert res.status == '405 METHOD NOT ALLOWED'
