@@ -1,5 +1,4 @@
 import json
-from wsgiref import headers
 
 
 class TestAPICases():
