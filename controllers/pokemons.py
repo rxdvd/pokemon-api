@@ -1,5 +1,5 @@
 ''' pokemons controller '''
-from werkzeug.exceptions import NotFound
+from werkzeug.exceptions import NotFound, BadRequest
 import json
 
 f = open('data/pokemon.json')
@@ -13,6 +13,8 @@ def show(req, uid):
 
 def create(req):
     new_pokemon = req.get_json()
+    if 'name' not in new_pokemon:
+        raise BadRequest(f"Pokemon needs a name.")
     new_pokemon['id'] = sorted([p['id'] for p in pokemons])[-1] + 1
     pokemons.append(new_pokemon)
     return new_pokemon, 201
