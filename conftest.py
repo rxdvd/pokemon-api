@@ -1,6 +1,6 @@
 import pytest
 import app
-from controllers import pokemon
+from controllers import pokemons
 
 
 @pytest.fixture
@@ -29,6 +29,6 @@ def api(monkeypatch):
                     ]
     # This is assuming the data is being imported and saved as pokemon inside
     # of controllers/pokemon.py
-    monkeypatch.setattr(pokemon, "pokemon", test_pokemon)
+    monkeypatch.setattr(pokemons, "pokemons", test_pokemon)
     api = app.app.test_client()
     return api
