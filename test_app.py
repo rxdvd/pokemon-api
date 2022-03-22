@@ -20,7 +20,7 @@ class TestAPICases():
     def test_get_pokemon_404(self, api):
         res = api.get('/pokemon/4')
         assert res.status == '404 NOT FOUND'
-        assert "no pokemon with id 4" in res.json['message']
+        assert "don't have that pokemon with id 4!" in res.json['message']
 
     def test_post_pokemon(self, api):
         mock_data = json.dumps(
@@ -60,7 +60,7 @@ class TestAPICases():
         assert len(resTwo.json) == 2
 
     def test_update_pokemon(self, api):
-        mock_data = json.dumps({'name', 'Edwardmon'})
+        mock_data = json.dumps({'name': 'Edwardmon'})
         mock_headers = {'Content-Type': 'application/json'}
         res = api.patch('/pokemon/1', data=mock_data, headers=mock_headers)
         assert res.json['id'] == 1
